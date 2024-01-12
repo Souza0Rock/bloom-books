@@ -1,34 +1,15 @@
 "use client";
 
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Typography from "../Typography";
 import Stack from "../Stack";
 import Select from "../Select";
 import GridRows from "../../../../public/icons/gridRows";
 import GridBlock from "../../../../public/icons/gridBlock";
-import { useGridOrientation } from "@/hooks/useGridOrientation";
-// import { useRouter } from "next/router";
+import { useGridOrientation } from "@/contexts/GridOrientation";
 
 const SubHeader: React.FC = () => {
-  // const { route } = useRouter();
-
-  const validateRoute = () => {
-    // if (route === "/quem-somos")
-    //   return {
-    //     crumb: "Quem Somos",
-    //     complementText: "A maior rede de tratamento pokémon.",
-    //   };
-    // else
-    return {
-      crumb: "Agendar Consulta",
-      complementText: "Recupere seus pokémons em 5 segundos",
-    };
-  };
-
-  const { complementText, crumb } = validateRoute();
-
   const { gridOrientation, handleGridOrientation } = useGridOrientation();
-  console.log(gridOrientation, "gridOrientarion");
 
   return (
     <Stack
@@ -43,22 +24,26 @@ const SubHeader: React.FC = () => {
         Gêneros
       </Typography>
 
-      <Stack flexDirection="row" alignItems="center" gap={0.5}>
-        <Typography fontSize={12} lineHeigth={1}>
-          Exibir
-        </Typography>
-        <Select />
-        <Typography fontSize={12} lineHeigth={1}>
-          por vez
-        </Typography>
-        <GridRows
-          onClick={() => handleGridOrientation("rows")}
-          color={gridOrientation === "rows" ? "#5062F0" : "#D0D3E2"}
-        />
-        <GridBlock
-          onClick={() => handleGridOrientation("blocks")}
-          color={gridOrientation === "blocks" ? "#5062F0" : "#D0D3E2"}
-        />
+      <Stack flexDirection="row" alignItems="center" gap={2.75}>
+        <Stack flexDirection="row" gap={0.25}>
+          <Typography fontSize={12} lineHeigth={1}>
+            Exibir
+          </Typography>
+          <Select />
+          <Typography fontSize={12} lineHeigth={1}>
+            por vez
+          </Typography>
+        </Stack>
+        <Stack flexDirection="row" gap={0.5}>
+          <GridRows
+            onClick={() => handleGridOrientation("rows")}
+            color={gridOrientation === "rows" ? "#5062F0" : "#D0D3E2"}
+          />
+          <GridBlock
+            onClick={() => handleGridOrientation("blocks")}
+            color={gridOrientation === "blocks" ? "#5062F0" : "#D0D3E2"}
+          />
+        </Stack>
       </Stack>
     </Stack>
   );

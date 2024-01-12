@@ -1,11 +1,15 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import { Component } from "./Select.styled";
 import Chevron from "../../../../public/icons/chevron";
 import Typography from "../Typography";
-
-// import { Container } from './styles';
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { usePagination } from "@/contexts/Pagination";
+import Stack from "../Stack";
+import styled from "styled-components";
 
 const Select: React.FC = () => {
+  const { handleChangeItemsPerPage } = usePagination();
+
   const options = [5, 10, 15]; // Os números que você quer que apareçam no dropdown
 
   const handleSelect = (option: any) => {
@@ -22,6 +26,7 @@ const Select: React.FC = () => {
     setSelectedOption(option);
     setIsOpen(false);
     handleSelect(option);
+    handleChangeItemsPerPage(option);
   };
 
   const modalRef = useRef<HTMLDivElement>(null);
@@ -53,17 +58,26 @@ const Select: React.FC = () => {
     };
   }, [isOpen]);
 
+  const Container = styled.div`
+    position: relative;
+
+    .select-value {
+      text-decoration: underline;
+      text-decoration-color: #9296ac;
+    }
+
+    svg {
+      rotate: ${isOpen ? '180deg' : '0deg'};
+    }
+  `;
+
   return (
-    <div style={{ position: "relative" }}>
-      <div
+    <Container>
+      <Stack
         onClick={toggleOpen}
-        style={{
-          cursor: "pointer",
-          display: "flex",
-          alignItems: "center",
-          gap: 4,
-        }}
-        ref={modalRef}
+        flexDirection="row"
+        alignItems="center"
+        gap={0.25}
       >
         <Typography
           fontSize={12}
@@ -74,9 +88,10 @@ const Select: React.FC = () => {
           {selectedOption}
         </Typography>
         <Chevron />
-      </div>
+      </Stack>
       {isOpen && (
-        <ul
+        <div
+          ref={modalRef}
           style={{
             color: "#010311",
             position: "absolute",
@@ -97,9 +112,9 @@ const Select: React.FC = () => {
               {option}
             </li>
           ))}
-        </ul>
+        </div>
       )}
-    </div>
+    </Container>
   );
 };
 

@@ -1,13 +1,11 @@
-"use client"
+"use client";
 
 import React from "react";
 
-const GridBlock: React.FC<{ color?: string; onClick: (e?: any) => void }> = ({
+const GridBlock: React.FC<{ color?: string; onClick?: (e?: any) => void }> = ({
   color = "#D0D3E2",
   onClick,
 }) => {
-
-  // console.log(color, "color GridBlock")
   return (
     <svg
       width="19"
@@ -16,6 +14,7 @@ const GridBlock: React.FC<{ color?: string; onClick: (e?: any) => void }> = ({
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       onClick={onClick}
+      style={{ cursor: onClick ? "pointer" : "default" }}
     >
       <rect width="9" height="9" fill={color} />
       <rect y="10" width="9" height="9" fill={color} />

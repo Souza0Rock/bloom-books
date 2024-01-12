@@ -6,4 +6,5 @@ export interface TStyles {
   color?: string;
   cursorPointer?: boolean;
   lineHeigth?: number | string;
+  italic?: boolean;
 }

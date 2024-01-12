@@ -1,12 +1,11 @@
-"use client"
+"use client";
 
 import React from "react";
 
-const GridRows: React.FC<{ color?: string; onClick: (e?: any) => void }> = ({
+const GridRows: React.FC<{ color?: string; onClick?: (e?: any) => void }> = ({
   color = "#D0D3E2",
   onClick,
 }) => {
-  console.log(color, "color GridRows")
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -15,6 +14,7 @@ const GridRows: React.FC<{ color?: string; onClick: (e?: any) => void }> = ({
       viewBox="0 0 20 19"
       fill="none"
       onClick={onClick}
+      style={{ cursor: onClick ? "pointer" : "default" }}
     >
       <rect width="20" height="4" fill={color} />
       <rect y="5" width="20" height="4" fill={color} />

@@ -39,6 +39,6 @@ export async function generateMetadata() {
   //   }
 
   return {
-    title: `Cateno${pageTitle}`,
+    title: `Bloom${pageTitle}`,
   };
 }

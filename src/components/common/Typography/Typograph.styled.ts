@@ -24,5 +24,6 @@ export const Text = styled.span<TStyles>`
   font-weight: ${({ fontWeight }) => fontWeight};
   color: ${({ color }) => color};
   cursor: ${({ cursorPointer }) => (cursorPointer ? "pointer" : "auto")};
-  line-height: ${({ lineHeigth = "normal" }) => (calcSpace(lineHeigth))};
+  line-height: ${({ lineHeigth = "normal" }) => calcSpace(lineHeigth)};
+  font-style: ${({ italic = false }) => (italic ? "italic" : "normal")};
 `;

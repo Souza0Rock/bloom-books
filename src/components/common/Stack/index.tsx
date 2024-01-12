@@ -1,3 +1,5 @@
+"use client"
+
 import React, { ReactNode } from "react";
 import { Container, ContainerProps } from "./stack.styled";
 

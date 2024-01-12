@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import React from "react";
 import { Text } from "./Typograph.styled";
@@ -24,6 +24,7 @@ const Typography: React.FC<TProps & TStyles> = ({
   fontWeight = 400,
   color = "#000",
   lineHeigth = "normal",
+  italic = false,
   ...rest
 }) => {
   return (
@@ -36,6 +37,7 @@ const Typography: React.FC<TProps & TStyles> = ({
       color={color}
       cursorPointer={rest.onClick ? true : false}
       lineHeigth={lineHeigth}
+      italic={italic}
       {...rest}
     >
       {children}

@@ -33,6 +33,7 @@ export interface ContainerProps {
   alignSelf?: "auto" | "center" | "baseline";
   backgroundColor?: string;
   borderRadius?: number;
+  cursorPointer?: boolean;
 }
 
 const calcSpace = (space?: number | string) => {
@@ -81,6 +82,7 @@ export const Container = styled.div<ContainerProps>`
     alignSelf = "auto",
     backgroundColor = "transparent",
     borderRadius = 0,
+    cursorPointer = false,
   }) => css`
     flex-direction: ${flexDirection};
     gap: ${calcSpace(gap)};
@@ -107,5 +109,6 @@ export const Container = styled.div<ContainerProps>`
     align-self: ${alignSelf};
 
     background-color: ${backgroundColor};
+    cursor: ${cursorPointer ? "pointer" : "default"};
   `}
 `;

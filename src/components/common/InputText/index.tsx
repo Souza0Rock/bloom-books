@@ -1,31 +1,34 @@
-import React from "react";
+import React, { KeyboardEventHandler } from "react";
 import Stack from "../Stack";
-
-// import { Container } from './styles';
 
 const InputText: React.FC<{
   icon?: React.ReactNode;
   width?: string;
-}> = ({ icon, width = "auto" }) => {
+  value: string;
+  onChange: React.ChangeEventHandler<HTMLInputElement>;
+  handleEnter?: (e: string) => void;
+}> = ({ icon, width = "auto", value, onChange, handleEnter }) => {
   return (
-    // <form
-    //   // onSubmit={handleSearch}
-    //   style={{ display: "flex", justifyContent: "center", margin: "20px" }}
-    // >
     <Stack
-      borderRadius={1}
-      backgroundColor="#fff"
       pl={1}
-      flexDirection="row"
-      alignItems="center"
       width={width}
+      borderRadius={1}
+      alignItems="center"
+      flexDirection="row"
+      backgroundColor="#fff"
     >
       {icon}
       <input
         type="text"
         placeholder="Pesquise aqui..."
-        // value={searchQuery}
-        // onChange={(e) => setSearchQuery(e.target.value)}
+        value={value}
+        onChange={onChange}
+        onKeyDown={(e: any) => {
+          // console.log(e, "eee")
+          if (e.code === "Enter" && handleEnter) {
+            handleEnter(e.target.value);
+          }
+        }}
         style={{
           width: "100%",
           padding: "8px",
@@ -36,7 +39,6 @@ const InputText: React.FC<{
         }}
       />
     </Stack>
-    // </form>
   );
 };
 
