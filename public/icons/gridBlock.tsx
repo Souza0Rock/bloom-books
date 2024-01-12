@@ -7,7 +7,7 @@ const GridBlock: React.FC<{ color?: string; onClick: (e?: any) => void }> = ({
   onClick,
 }) => {
 
-  console.log(color, "color GridBlock")
+  // console.log(color, "color GridBlock")
   return (
     <svg
       width="19"

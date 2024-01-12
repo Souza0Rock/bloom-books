@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useEffect } from "react";
 import Typography from "../Typography";
 import Stack from "../Stack";
 import Select from "../Select";
@@ -28,7 +28,7 @@ const SubHeader: React.FC = () => {
   const { complementText, crumb } = validateRoute();
 
   const { gridOrientation, handleGridOrientation } = useGridOrientation();
-  // console.log(gridOrientation, "gridOrientarion");
+  console.log(gridOrientation, "gridOrientarion");
 
   return (
     <Stack

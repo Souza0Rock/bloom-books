@@ -1,4 +1,3 @@
-
 import { nyTimesInstance } from "../connectApi";
 
 export const getBooksGenders = async () => {

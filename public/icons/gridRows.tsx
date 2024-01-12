@@ -2,13 +2,11 @@
 
 import React from "react";
 
-// import { Container } from './styles';
-
 const GridRows: React.FC<{ color?: string; onClick: (e?: any) => void }> = ({
   color = "#D0D3E2",
   onClick,
 }) => {
-  // console.log(color, "color GridRows")
+  console.log(color, "color GridRows")
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
