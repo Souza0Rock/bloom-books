@@ -1,40 +1,69 @@
-import React, { createContext, useContext, useState, ReactNode } from "react";
+import useLocalStorage from "@/hooks/useLocalStorage";
+import React, {
+  createContext,
+  useContext,
+  useState,
+  ReactNode,
+  useEffect,
+} from "react";
 
-export type TGenderStorageValue = {
-  genderName: string;
-  handleChangeGenderName: (name: string) => void;
+type TFavoriteBooksValue = {
+  favoriteBooks: any[];
+  handleFavoriteBook: (name: any) => void;
 };
 
-interface IGridOrientation {
+interface IFavoritesBooks {
   children: ReactNode;
 }
 
-export const GenderStorageContext = createContext<TGenderStorageValue | null>(
+export const FavoriteBooksContext = createContext<TFavoriteBooksValue | null>(
   null
 );
 
-export function GenderStorageProvider({ children }: IGridOrientation) {
-  const [genderName, setGenderName] = useState("");
-  const handleChangeGenderName = (name: string) => setGenderName(name);
+export function FavoriteBooksProvider({ children }: IFavoritesBooks) {
+  const { setStoredValue } = useLocalStorage();
+  const [favoriteBooks, setFavoriteBooks] = useState<any[]>([]);
+
+  const handleFavoriteBook = (book: any) => {
+    const isBookInFavorites = favoriteBooks.some((item) => item.title === book.title);
+  
+    if (isBookInFavorites) {
+      // O livro já está nos favoritos, então remova-o
+      const updatedItems = favoriteBooks.filter((i) => i.title !== book.title);
+      setFavoriteBooks(updatedItems);
+    } else {
+      // O livro não está nos favoritos, então adicione-o
+      setFavoriteBooks([...favoriteBooks, book]);
+    }
+  
+    // Atualize o localStorage
+    setStoredValue("favoriteBooks", JSON.stringify(favoriteBooks));
+  };
+
+  console.log(favoriteBooks, "favoriteBooks")
+  // useEffect(() => {
+  //   setStoredValue("favoriteBooks", JSON.stringify(favoriteBooks));
+  // }, [favoriteBooks]);
+
 
   return (
-    <GenderStorageContext.Provider
+    <FavoriteBooksContext.Provider
       value={{
-        genderName,
-        handleChangeGenderName,
+        favoriteBooks,
+        handleFavoriteBook,
       }}
     >
       {children}
-    </GenderStorageContext.Provider>
+    </FavoriteBooksContext.Provider>
   );
 }
 
-export function useGenderStorage() {
-  const context = useContext(GenderStorageContext);
+export function useFavoriteBooks() {
+  const context = useContext(FavoriteBooksContext);
 
   if (!context) {
     throw new Error(
-      "useGenderStorageContext must be used within an GenderStorageProvider"
+      "useFavoriteBooksContext must be used within an FavoriteBooksProvider"
     );
   }
   return context;

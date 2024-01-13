@@ -6,9 +6,11 @@ import Stack from "../Stack";
 import Button from "../Button";
 import Image from "next/image";
 import Star from "../../../../public/icons/star";
+import { useFavoriteBooks } from "@/contexts/FavoritesBooks";
 
 const BookCard: React.FC<{ data: TBook }> = ({ data }) => {
   const { gridOrientation } = useGridOrientation();
+  const { handleFavoriteBook } = useFavoriteBooks();
 
   return gridOrientation === "rows" ? (
     <ContainerCardRow flexDirection="row" gap={0.625}>
@@ -40,7 +42,17 @@ const BookCard: React.FC<{ data: TBook }> = ({ data }) => {
             <Typography fontSize={12} color="#454A67" className="conte nt-text">
               by {data.author}
             </Typography>
-            <Star size={11} color="#5062F0" />
+            <Stack
+              onClick={() =>
+                handleFavoriteBook({
+                  title: data.title,
+                  author: data.author,
+                  image: data.book_image,
+                })
+              }
+            >
+              <Star size={11} color="#5062F0" />
+            </Stack>
           </Stack>
           <Typography className="content-text" fontSize={12}>
             {data.description}

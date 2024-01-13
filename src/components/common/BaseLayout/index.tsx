@@ -3,6 +3,7 @@
 import React from "react";
 import { GridOrientationProvider } from "@/contexts/GridOrientation";
 import { GenderStorageProvider } from "@/contexts/GenderStorage";
+import { FavoriteBooksProvider } from "@/contexts/FavoritesBooks";
 import { Container } from "./BaseLayout.styled";
 import SubHeader from "../SubHeader";
 import Header from "../Header";
@@ -15,13 +16,15 @@ export type TProps = {
 const BaseLayout: React.FC<TProps> = ({ children }) => (
   <GridOrientationProvider>
     <GenderStorageProvider>
-      <Container>
-        <Header />
-        <SubHeader />
-        <Stack m={1} minHeight="100vh" className="children-content">
-          {children}
-        </Stack>
-      </Container>
+      <FavoriteBooksProvider>
+        <Container>
+          <Header />
+          <SubHeader />
+          <Stack m={1} minHeight="100vh" className="children-content">
+            {children}
+          </Stack>
+        </Container>
+      </FavoriteBooksProvider>
     </GenderStorageProvider>
   </GridOrientationProvider>
 );
