@@ -19,8 +19,8 @@ const usePagination = ({
   const pathname = usePathname();
   const searchParams = useSearchParams();
 
-  const pageParam = searchParams.get("page");
-  const itemsPerPageParam = searchParams.get("itemsPerPage");
+  const pageParam = searchParams.get("page") || 0;
+  const itemsPerPageParam = searchParams.get("itemsPerPage") || 5;
 
   useEffect(() => {
     setCurrentPage(Number(pageParam) - 1);

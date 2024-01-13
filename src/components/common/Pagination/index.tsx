@@ -29,7 +29,7 @@ const Pagination = ({
         {"<"}
       </ButtonPagination>
       <Stack flexDirection="row" flexWrap="wrap" gap={0.3}>
-        {Array.from(Array(totalPages), (_, index) => {
+        {Array.from({ length: 5 }).map((_, index) => {
           return (
             <ButtonPagination
               page={currentPage == index}

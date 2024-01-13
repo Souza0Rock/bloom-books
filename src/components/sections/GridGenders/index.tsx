@@ -1,17 +1,20 @@
 "use client";
 
 import React from "react";
+import { useSearchParams } from "next/navigation";
+import usePagination from "@/hooks/usePagination";
 import Stack from "@/components/common/Stack";
 import GenderCard from "@/components/common/GenderCard";
-import { TGender } from "@/types/bookGenders";
 import { useGridOrientation } from "@/contexts/GridOrientation";
 import Pagination from "@/components/common/Pagination";
-import usePagination from "@/hooks/usePagination";
-import { useSearchParams } from "next/navigation";
+import { TGender } from "@/types/bookGenders";
+import { useWindowWidht } from "@/contexts/WindowWidht";
 
 const GridGenders: React.FC<{ dataGenders: TGender[] }> = ({ dataGenders }) => {
   const { get } = useSearchParams();
-
+  const { gridOrientation } = useGridOrientation();
+  // const { widthScreen } = useWindowWidht()
+  
   const searchParam = get("search") || "";
 
   const filteredArray = dataGenders.filter((gender) =>
@@ -22,11 +25,15 @@ const GridGenders: React.FC<{ dataGenders: TGender[] }> = ({ dataGenders }) => {
     data: filteredArray,
   });
 
-  const { gridOrientation } = useGridOrientation();
+  // console.log(filteredArray, "filteredArray")
 
   return (
     <>
-      <Stack gap={gridOrientation === "rows" ? 3 : 1.75}>
+      <Stack
+        gap={gridOrientation === "rows" ? 1.625 : 1.25}
+        flexDirection={gridOrientation === "rows" ? "column" : "row"}
+        flexWrap={gridOrientation === "rows" ? "nowrap" : "wrap"}
+      >
         {data &&
           data?.map((i, index) => {
             return <GenderCard data={i} key={index} />;

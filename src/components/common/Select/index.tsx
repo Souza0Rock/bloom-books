@@ -86,12 +86,14 @@ const Select: React.FC = () => {
         flexDirection="row"
         alignItems="center"
         gap={0.25}
+        cursorPointer
       >
         <Typography
           fontSize={12}
           lineHeigth={1}
           color="#010311"
           className="select-value"
+          cursorPointer
         >
           {selectedOption}
         </Typography>

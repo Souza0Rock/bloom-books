@@ -6,7 +6,7 @@ import Header from "../Header";
 import SubHeader from "../SubHeader";
 import { PaginationProvider } from "@/contexts/Pagination";
 import { GridOrientationProvider } from "@/contexts/GridOrientation";
-import { WindowWidhtProvider } from "@/contexts/WindowWidht";
+import { WindowWidhtProvider, useWindowWidht } from "@/contexts/WindowWidht";
 import Stack from "../Stack";
 
 export type TProps = {
@@ -14,6 +14,8 @@ export type TProps = {
 };
 
 const BaseLayout: React.FC<TProps> = ({ children }) => {
+  const { widthScreen } = useWindowWidht();
+
   return (
     <PaginationProvider>
       <GridOrientationProvider>
@@ -21,7 +23,12 @@ const BaseLayout: React.FC<TProps> = ({ children }) => {
           <S.Container>
             <Header />
             <SubHeader />
-            <S.ChildrenContent>{children}</S.ChildrenContent>
+            <Stack
+              m={widthScreen < 768 ? 1 : 7.5}
+              mt={widthScreen < 768 ? 0 : 1.5}
+            >
+              {children}
+            </Stack>
           </S.Container>
         </WindowWidhtProvider>
       </GridOrientationProvider>

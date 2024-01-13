@@ -7,9 +7,11 @@ import { TGender } from "@/types/bookGenders";
 import TextLink from "../TextLink";
 import { formatDate } from "@/utils/formatDate";
 import { useGridOrientation } from "@/contexts/GridOrientation";
+import { useWindowWidht } from "@/contexts/WindowWidht";
 
 const GenderCard: React.FC<{ data: TGender }> = ({ data }) => {
   const { gridOrientation } = useGridOrientation();
+  const { widthScreen } = useWindowWidht()
 
   return gridOrientation === "rows" ? (
     <Stack flexDirection="column" justifyContent="space-between" gap={0.5}>
@@ -49,7 +51,12 @@ const GenderCard: React.FC<{ data: TGender }> = ({ data }) => {
     //     </Typography>
     //   </Stack>
     // </Stack>
-    <Stack flexDirection="column" justifyContent="space-between" gap={0.75}>
+    <Stack
+      flexDirection="column"
+      justifyContent="space-between"
+      gap={0.5}
+      width="46.9%"
+    >
       <Stack flexDirection="column" gap={0.25} flexWrap="wrap">
         <TextLink href={data.list_name_encoded}>{data.display_name}</TextLink>
         <Typography fontSize={10} italic color="#9296AC">
