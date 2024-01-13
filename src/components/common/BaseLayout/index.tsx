@@ -6,31 +6,24 @@ import Header from "../Header";
 import SubHeader from "../SubHeader";
 import { PaginationProvider } from "@/contexts/Pagination";
 import { GridOrientationProvider } from "@/contexts/GridOrientation";
+import { WindowWidhtProvider } from "@/contexts/WindowWidht";
+import Stack from "../Stack";
 
 export type TProps = {
   children: React.ReactNode;
-  backgroundImage?: string;
-  centerChildVertically?: boolean;
 };
 
-const BaseLayout: React.FC<TProps> = ({
-  children,
-  backgroundImage,
-  centerChildVertically,
-}) => {
+const BaseLayout: React.FC<TProps> = ({ children }) => {
   return (
     <PaginationProvider>
       <GridOrientationProvider>
-        <S.Container>
-          <Header />
-          <SubHeader />
-          <S.ChildrenContent
-            centerChildVertically={centerChildVertically}
-            backgroundImage={backgroundImage}
-          >
-            {children}
-          </S.ChildrenContent>
-        </S.Container>
+        <WindowWidhtProvider>
+          <S.Container>
+            <Header />
+            <SubHeader />
+            <S.ChildrenContent>{children}</S.ChildrenContent>
+          </S.Container>
+        </WindowWidhtProvider>
       </GridOrientationProvider>
     </PaginationProvider>
   );

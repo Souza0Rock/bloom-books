@@ -6,9 +6,6 @@ export const Container = styled.div`
 
 export const ChildrenContent = styled.div<{
   backgroundImage?: string;
-  centerChildVertically?: boolean;
 }>`
-  min-height: calc(
-    100vh - ${({ backgroundImage }) => (backgroundImage ? 176 : 130)}px
-  );
+  padding: 1rem;
 `;

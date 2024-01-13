@@ -5,6 +5,7 @@ import React, {
   useState,
   ReactNode,
   useCallback,
+  useEffect,
 } from "react";
 
 export type TPaginationValue = {
@@ -46,6 +47,20 @@ export function PaginationProvider({ children }: IPagination) {
     setItemsPerPage(items);
     push(pathname + "?" + createQueryString("itemsPerPage", String(items)));
   };
+
+  useEffect(() => {
+    const itemsPerPageParam = Number(searchParams.get("itemsPerPage"));
+
+    itemsPerPageParam &&
+      itemsPerPageParam !== 0 &&
+      setItemsPerPage(itemsPerPageParam);
+
+    const pageParam = Number(searchParams.get("page"));
+
+    // console.log(pageParam, "pageParam")
+
+    pageParam !== 0 && setPage(pageParam);
+  }, []);
 
   return (
     <PaginationContext.Provider

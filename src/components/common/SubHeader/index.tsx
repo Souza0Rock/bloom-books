@@ -7,9 +7,11 @@ import Select from "../Select";
 import GridRows from "../../../../public/icons/gridRows";
 import GridBlock from "../../../../public/icons/gridBlock";
 import { useGridOrientation } from "@/contexts/GridOrientation";
+import { useWindowWidht } from "@/contexts/WindowWidht";
 
 const SubHeader: React.FC = () => {
   const { gridOrientation, handleGridOrientation } = useGridOrientation();
+  const { widthScreen } = useWindowWidht()
 
   return (
     <Stack
@@ -24,7 +26,7 @@ const SubHeader: React.FC = () => {
         Gêneros
       </Typography>
 
-      <Stack flexDirection="row" alignItems="center" gap={2.75}>
+      <Stack flexDirection="row" alignItems="center" gap={widthScreen > 576 ? 2.75 : 0.5}>
         <Stack flexDirection="row" gap={0.25}>
           <Typography fontSize={12} lineHeigth={1}>
             Exibir

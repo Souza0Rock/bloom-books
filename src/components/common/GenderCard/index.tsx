@@ -48,7 +48,7 @@ const GenderCard: React.FC<{ data: TGender }> = ({ data }) => {
           {formatDate(data.oldest_published_date, "DD/MM/YYYY")}
         </Typography>
       </Stack>
-    </Stack>
+    </Stack> 
   );
 };
 

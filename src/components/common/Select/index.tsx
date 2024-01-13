@@ -6,8 +6,14 @@ import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { usePagination } from "@/contexts/Pagination";
 import Stack from "../Stack";
 import styled from "styled-components";
+import useCreateQuery from "@/hooks/useCreateQuery";
 
 const Select: React.FC = () => {
+  const { get } = useSearchParams()
+
+  const param = get("itemsPerPage")
+
+  const { createQuery } = useCreateQuery();
   const { handleChangeItemsPerPage } = usePagination();
 
   const options = [5, 10, 15]; // Os números que você quer que apareçam no dropdown
@@ -18,7 +24,7 @@ const Select: React.FC = () => {
   };
 
   const [isOpen, setIsOpen] = useState(false);
-  const [selectedOption, setSelectedOption] = useState(options[0]);
+  const [selectedOption, setSelectedOption] = useState(Number(param) || options[0]);
 
   const toggleOpen = () => setIsOpen(!isOpen);
 
@@ -27,6 +33,8 @@ const Select: React.FC = () => {
     setIsOpen(false);
     handleSelect(option);
     handleChangeItemsPerPage(option);
+
+    createQuery("itemsPerPage", String(option));
   };
 
   const modalRef = useRef<HTMLDivElement>(null);
@@ -67,7 +75,7 @@ const Select: React.FC = () => {
     }
 
     svg {
-      rotate: ${isOpen ? '180deg' : '0deg'};
+      rotate: ${isOpen ? "180deg" : "0deg"};
     }
   `;
 
@@ -96,6 +104,7 @@ const Select: React.FC = () => {
             color: "#010311",
             position: "absolute",
             backgroundColor: "#fff",
+            zIndex: 9999,
           }}
         >
           {options.map((option, index) => (
