@@ -56,17 +56,15 @@ const usePagination = ({
   };
 
   const totalPages = data && Math.ceil(data?.length / itemsPerPage);
-  const startIndex = currentPage * itemsPerPage;
-  const endIndex = startIndex + itemsPerPage;
-  const paginatedItems = data.slice(startIndex, endIndex);
+  const firstIndex = currentPage * itemsPerPage;
+  const lastIndex = firstIndex + itemsPerPage;
+  const paginatedItems = data.slice(firstIndex, lastIndex);
+
+  const searchParam = searchParams.get("search");
 
   useEffect(() => {
     handleChangeCurrentPage(0);
-  }, [itemsPerPageParam]);
-
-  useEffect(() => {
-    searchParams.get("itemsPerPage");
-  }, []);
+  }, [itemsPerPageParam, searchParam]);
 
   return {
     handleChangeCurrentPage,
