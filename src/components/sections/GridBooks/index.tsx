@@ -6,10 +6,12 @@ import BookCard from "@/components/common/BookCard";
 import { useGridOrientation } from "@/contexts/GridOrientation";
 import usePagination from "@/hooks/usePagination";
 import Pagination from "@/components/common/Pagination";
+import { useGenderStorage } from "@/contexts/GenderStorage";
 
 const GridBooks: React.FC = () => {
   const { get } = useSearchParams();
   const { gridOrientation } = useGridOrientation();
+  const { handleChangeGenderName } = useGenderStorage();
 
   const pathname = usePathname().slice(1);
 
@@ -19,7 +21,7 @@ const GridBooks: React.FC = () => {
     try {
       const data = await getBooks(pathname);
       setBooks(data.books);
-      console.log(data, "data");
+      handleChangeGenderName(data.display_name);
     } catch (error) {
       throw error;
     }

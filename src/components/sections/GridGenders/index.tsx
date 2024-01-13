@@ -8,12 +8,11 @@ import GenderCard from "@/components/common/GenderCard";
 import { useGridOrientation } from "@/contexts/GridOrientation";
 import Pagination from "@/components/common/Pagination";
 import { TGender } from "@/types/bookGenders";
-import useWindowWidht from "@/hooks/useWindowWidht";
+import { Container } from "./GridGenders.styled";
 
 const GridGenders: React.FC<{ dataGenders: TGender[] }> = ({ dataGenders }) => {
   const { get } = useSearchParams();
   const { gridOrientation } = useGridOrientation();
-  const { widthScreen } = useWindowWidht();
 
   const searchParam = get("search") || "";
 
@@ -26,19 +25,13 @@ const GridGenders: React.FC<{ dataGenders: TGender[] }> = ({ dataGenders }) => {
   });
 
   return (
-    <>
+    <Container gridOrientation={gridOrientation}>
       <Stack
         gap={gridOrientation === "rows" ? 1.625 : 1.25}
         flexDirection={gridOrientation === "rows" ? "column" : "row"}
         flexWrap={gridOrientation === "rows" ? "nowrap" : "wrap"}
         mb={gridOrientation === "rows" ? 1.5 : 2.625}
-        justifyContent={
-          gridOrientation === "blocks"
-            ? widthScreen > 1199
-              ? "space-between"
-              : "flex-start"
-            : "flex-start"
-        }
+        className="box-grid"
       >
         {data &&
           data?.map((i, index) => {
@@ -51,7 +44,7 @@ const GridGenders: React.FC<{ dataGenders: TGender[] }> = ({ dataGenders }) => {
         currentPage={meta.currentPage}
         totalPages={meta.totalPages}
       />
-    </>
+    </Container>
   );
 };
 

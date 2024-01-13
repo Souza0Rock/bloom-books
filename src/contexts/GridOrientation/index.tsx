@@ -6,9 +6,11 @@ import React, {
   useEffect,
 } from "react";
 
+export type TGridOrientation = "rows" | "blocks";
+
 export type TGridOrientationValue = {
   gridOrientation: "rows" | "blocks";
-  handleGridOrientation: (orientation: "rows" | "blocks") => void;
+  handleGridOrientation: (orientation: TGridOrientation) => void;
 };
 
 interface IGridOrientation {
@@ -19,7 +21,7 @@ export const GridOrientationContext =
   createContext<TGridOrientationValue | null>(null);
 
 export function GridOrientationProvider({ children }: IGridOrientation) {
-  const [gridOrientation, setGridOrientation] = useState<"rows" | "blocks">(
+  const [gridOrientation, setGridOrientation] = useState<TGridOrientation>(
     "rows"
   );
 
@@ -31,7 +33,7 @@ export function GridOrientationProvider({ children }: IGridOrientation) {
     }
   }, []);
 
-  const handleGridOrientation = (orientation: "rows" | "blocks") => {
+  const handleGridOrientation = (orientation: TGridOrientation) => {
     if (typeof window !== "undefined") {
       window.localStorage.setItem("grid_orientation", orientation);
     }

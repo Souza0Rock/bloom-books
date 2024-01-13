@@ -7,18 +7,21 @@ import Select from "../Select";
 import GridRows from "../../../../public/icons/gridRows";
 import GridBlock from "../../../../public/icons/gridBlock";
 import { useGridOrientation } from "@/contexts/GridOrientation";
-import { useSearchParams } from "next/navigation";
+import { useGenderStorage } from "@/contexts/GenderStorage";
+import { usePathname, useSearchParams } from "next/navigation";
 import { Container } from "./SubHeader.styled";
 import useCreateQuery from "@/hooks/useCreateQuery";
 
 const SubHeader: React.FC = () => {
+  const pathname = usePathname();
+  const { genderName } = useGenderStorage();
   const { gridOrientation, handleGridOrientation } = useGridOrientation();
 
   const options = [5, 10, 15];
 
   const { get } = useSearchParams();
 
-  const itemsPerPageParam = get("itemsPerPage");
+  const itemsPerPageParam = get("itemsPerPage") || 5;
 
   const { createQuery } = useCreateQuery();
 
@@ -26,13 +29,13 @@ const SubHeader: React.FC = () => {
     <Container
       px={1}
       py={0.5}
+      alignItems="center"
       flexDirection="row"
       backgroundColor="#F2F3F8"
-      alignItems="center"
       justifyContent="space-between"
     >
       <Typography fontSize={18} fontWeight={700} color="#010311">
-        Gêneros
+        {pathname === "/" ? "Gêneros" : genderName}
       </Typography>
 
       <Stack

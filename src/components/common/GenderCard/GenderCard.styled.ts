@@ -6,5 +6,16 @@ export const ContainerRowMode = styled(Stack)`
 
   @media (min-width: 1199px) {
     flex-direction: row;
+
+    .box-link {
+      gap: 0.75rem;
+      flex-direction: row;
+      align-items: center;
+    }
+
+    .updates {
+      gap: 5.875rem;
+      flex-direction: row;
+    }
   }
 `;
