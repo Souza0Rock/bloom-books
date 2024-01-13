@@ -1,9 +1,10 @@
 "use client";
 
 import React, { ReactNode } from "react";
-import { Container, ContainerProps } from "./stack.styled";
+import { Container } from "./stack.styled";
+import { IStyleProps } from "@/types/styles";
 
-interface StackProps extends ContainerProps {
+interface StackProps extends IStyleProps {
   children: ReactNode;
   onClick?: () => void;
   className?: string;
@@ -12,7 +13,7 @@ interface StackProps extends ContainerProps {
 const Stack: React.FC<StackProps> = (props) => {
   const { className } = props
 
-  console.log(className, "className")
+  // console.log(className, "className")
   return <Container className={className} {...props} />;
 };
 

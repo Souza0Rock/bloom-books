@@ -42,6 +42,6 @@ export async function generateMetadata() {
   //   }
 
   return {
-    title: `Bloom${pageTitle}`,
+    title: `Bloom Books${pageTitle}`,
   };
 }

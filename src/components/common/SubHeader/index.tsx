@@ -8,10 +8,14 @@ import GridRows from "../../../../public/icons/gridRows";
 import GridBlock from "../../../../public/icons/gridBlock";
 import { useGridOrientation } from "@/contexts/GridOrientation";
 import useWindowWidht from "@/hooks/useWindowWidht";
+import { usePathname } from "next/navigation";
 
 const SubHeader: React.FC = () => {
   const { gridOrientation, handleGridOrientation } = useGridOrientation();
   const { widthScreen } = useWindowWidht()
+  const pathname = usePathname()
+
+  // console.log(pathname, "pathname")
 
   return (
     <Stack

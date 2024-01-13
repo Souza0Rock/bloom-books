@@ -1,9 +1,11 @@
-"use client"
+"use client";
 
-import Typography from "@/components/common/Typography"
+import Typography from "@/components/common/Typography";
+import GridBooks from "@/components/sections/GridBooks";
 
 export default function Gender() {
-  return(
-    <Typography>gender</Typography>
-  )
+  return (
+    <GridBooks />
+    // <Typography>gender</Typography>
+  );
 }

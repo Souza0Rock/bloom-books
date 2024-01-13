@@ -7,22 +7,26 @@ import React, {
 } from "react";
 
 export type TGridOrientationValue = {
-  gridOrientation: string | "rows" | "blocks" | false;
-  handleGridOrientation: (orientation: "rows" | "blocks") => void
+  gridOrientation: "rows" | "blocks";
+  handleGridOrientation: (orientation: "rows" | "blocks") => void;
 };
 
 interface IGridOrientation {
   children: ReactNode;
 }
 
-export const GridOrientationContext = createContext<TGridOrientationValue | null>(null);
+export const GridOrientationContext =
+  createContext<TGridOrientationValue | null>(null);
 
 export function GridOrientationProvider({ children }: IGridOrientation) {
-  const [gridOrientation, setGridOrientation] = useState<string | "rows" | "blocks" | false>("rows");
+  const [gridOrientation, setGridOrientation] = useState<"rows" | "blocks">(
+    "rows"
+  );
 
   useEffect(() => {
     if (typeof window !== "undefined") {
-      const storedOrientation = window.localStorage.getItem("grid_orientation") || "rows";
+      const storedOrientation: any =
+        window.localStorage.getItem("grid_orientation") || "rows";
       setGridOrientation(storedOrientation);
     }
   }, []);
@@ -39,7 +43,7 @@ export function GridOrientationProvider({ children }: IGridOrientation) {
     <GridOrientationContext.Provider
       value={{
         gridOrientation,
-        handleGridOrientation
+        handleGridOrientation,
       }}
     >
       {children}

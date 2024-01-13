@@ -1,40 +1,5 @@
+import { IStyleProps } from "@/types/styles";
 import styled, { css } from "styled-components";
-
-export interface ContainerProps {
-  flexDirection?: "column" | "row";
-  gap?: number;
-  m?: number;
-  mt?: number;
-  mb?: number;
-  ml?: "auto" | number;
-  mr?: number;
-  mx?: number;
-  my?: number;
-  p?: number;
-  pt?: number;
-  pb?: number;
-  pl?: number;
-  pr?: number;
-  px?: number;
-  py?: number;
-  maxHeight?: string;
-  maxWidth?: string;
-  height?: string;
-  width?: string;
-  alignItems?: "stretch" | "flex-start" | "flex-end" | "center" | "baseline";
-  justifyContent?:
-    | "flex-start"
-    | "flex-end"
-    | "center"
-    | "space-between"
-    | "space-around"
-    | "space-evenly";
-  flexWrap?: "wrap" | "nowrap" | "wrap-reverse";
-  alignSelf?: "auto" | "center" | "baseline";
-  backgroundColor?: string;
-  borderRadius?: number;
-  cursorPointer?: boolean;
-}
 
 const calcSpace = (space?: number | string) => {
   if (!space) {
@@ -52,7 +17,7 @@ const calcSpace = (space?: number | string) => {
   return space;
 };
 
-export const Container = styled.div<ContainerProps>`
+export const Container = styled.div<IStyleProps>`
   display: flex;
 
   ${({

@@ -4,7 +4,7 @@ export const calcSpace = (space?: number | string): string | number => {
   }
 
   if (typeof space === "number") {
-    return `${space * 8}px`;
+    return `${space * 16}px`;
   }
 
   if (space === "auto") {
