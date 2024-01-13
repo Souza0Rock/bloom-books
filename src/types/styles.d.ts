@@ -16,7 +16,9 @@ export interface IStyleProps {
   px?: number;
   py?: number;
   maxHeight?: string;
+  minHeight?: string;
   maxWidth?: string;
+  minWidth?: string;
   height?: string;
   width?: string;
   alignItems?: "stretch" | "flex-start" | "flex-end" | "center" | "baseline";

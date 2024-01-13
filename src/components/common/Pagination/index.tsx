@@ -22,9 +22,8 @@ const Pagination = ({
       // mt={1.5}
     >
       <ButtonPagination
-        onClick={() => {
-          currentPage !== 0 && handleChangePage(currentPage - 1);
-        }}
+        disabled={currentPage === 0}
+        onClick={() => handleChangePage(currentPage - 1)}
       >
         {"<"}
       </ButtonPagination>
@@ -32,10 +31,12 @@ const Pagination = ({
         {Array.from({ length: totalPages }).map((_, index) => {
           return (
             <ButtonPagination
-              page={currentPage == index}
-              value={index}
-              onClick={(e) => handleChangePage(e.target.value)}
               key={index}
+              value={index}
+              page={currentPage == index}
+              onClick={(e: { target: { value: number } }) =>
+                handleChangePage(e.target.value)
+              }
             >
               {index + 1}
             </ButtonPagination>
@@ -43,9 +44,8 @@ const Pagination = ({
         })}
       </Stack>
       <ButtonPagination
-        onClick={() => {
-          currentPage + 1 !== totalPages && handleChangePage(currentPage + 1);
-        }}
+        disabled={currentPage + 1 === totalPages}
+        onClick={() => handleChangePage(currentPage + 1)}
       >
         {">"}
       </ButtonPagination>

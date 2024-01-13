@@ -1,13 +1,21 @@
-import React, { KeyboardEventHandler } from "react";
+import React from "react";
 import Stack from "../Stack";
 
 const InputText: React.FC<{
-  icon?: React.ReactNode;
-  width?: string;
   value: string;
   onChange: React.ChangeEventHandler<HTMLInputElement>;
   handleEnter?: (e: string) => void;
-}> = ({ icon, width = "auto", value, onChange, handleEnter }) => {
+  className?: string;
+  width?: string;
+  icon?: React.ReactNode;
+}> = ({
+  value,
+  onChange,
+  handleEnter,
+  className = "",
+  width = "auto",
+  icon,
+}) => {
   return (
     <Stack
       pl={1}
@@ -16,6 +24,7 @@ const InputText: React.FC<{
       alignItems="center"
       flexDirection="row"
       backgroundColor="#fff"
+      className={className}
     >
       {icon}
       <input

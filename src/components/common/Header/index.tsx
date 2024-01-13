@@ -8,16 +8,16 @@ import Typography from "../Typography";
 import Star from "../../../../public/icons/star";
 import InputText from "../InputText";
 import Search from "../../../../public/icons/search";
+import { Container } from "./Header.styled";
 
 const Header: React.FC = () => {
   const { push } = useRouter();
-
   const { createQuery } = useCreateQuery();
 
   const [searchInput, setSearchInput] = useState("");
 
   return (
-    <Stack
+    <Container
       px={0.75}
       py={1}
       gap={1}
@@ -40,10 +40,31 @@ const Header: React.FC = () => {
         >
           Bloom Books
         </Typography>
+        <InputText
+          width="29.5%"
+          value={searchInput}
+          onChange={(e) => setSearchInput(e.target.value)}
+          handleEnter={(e) => createQuery("search", e)}
+          className="input-desktop"
+          icon={
+            <Stack
+              p={0.375}
+              ml={-0.75}
+              cursorPointer
+              onClick={() => createQuery("search", searchInput)}
+            >
+              <Search />
+            </Stack>
+          }
+        />
         <Star />
       </Stack>
       <InputText
         width="100%"
+        value={searchInput}
+        onChange={(e) => setSearchInput(e.target.value)}
+        handleEnter={(e) => createQuery("search", e)}
+        className="input-mobile"
         icon={
           <Stack
             p={0.375}
@@ -54,11 +75,8 @@ const Header: React.FC = () => {
             <Search />
           </Stack>
         }
-        value={searchInput}
-        onChange={(e) => setSearchInput(e.target.value)}
-        handleEnter={(e) => createQuery("search", e)}
       />
-    </Stack>
+    </Container>
   );
 };
 

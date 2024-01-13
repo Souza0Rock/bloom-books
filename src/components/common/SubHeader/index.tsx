@@ -1,24 +1,29 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Typography from "../Typography";
 import Stack from "../Stack";
 import Select from "../Select";
 import GridRows from "../../../../public/icons/gridRows";
 import GridBlock from "../../../../public/icons/gridBlock";
 import { useGridOrientation } from "@/contexts/GridOrientation";
-import useWindowWidht from "@/hooks/useWindowWidht";
-import { usePathname } from "next/navigation";
+import { useSearchParams } from "next/navigation";
+import { Container } from "./SubHeader.styled";
+import useCreateQuery from "@/hooks/useCreateQuery";
 
 const SubHeader: React.FC = () => {
   const { gridOrientation, handleGridOrientation } = useGridOrientation();
-  const { widthScreen } = useWindowWidht()
-  const pathname = usePathname()
 
-  // console.log(pathname, "pathname")
+  const options = [5, 10, 15];
+
+  const { get } = useSearchParams();
+
+  const itemsPerPageParam = get("itemsPerPage");
+
+  const { createQuery } = useCreateQuery();
 
   return (
-    <Stack
+    <Container
       px={1}
       py={0.5}
       flexDirection="row"
@@ -30,12 +35,21 @@ const SubHeader: React.FC = () => {
         Gêneros
       </Typography>
 
-      <Stack flexDirection="row" alignItems="center" gap={widthScreen > 576 ? 2.75 : 0.5}>
+      <Stack
+        flexDirection="row"
+        alignItems="center"
+        className="box-controls-grid"
+        gap={0.5}
+      >
         <Stack flexDirection="row" gap={0.25}>
           <Typography fontSize={12} lineHeigth={1}>
             Exibir
           </Typography>
-          <Select />
+          <Select
+            options={options}
+            value={itemsPerPageParam}
+            onChange={(e) => createQuery("itemsPerPage", e)}
+          />
           <Typography fontSize={12} lineHeigth={1}>
             por vez
           </Typography>
@@ -51,7 +65,7 @@ const SubHeader: React.FC = () => {
           />
         </Stack>
       </Stack>
-    </Stack>
+    </Container>
   );
 };
 

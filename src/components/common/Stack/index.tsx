@@ -8,13 +8,13 @@ interface StackProps extends IStyleProps {
   children: ReactNode;
   onClick?: () => void;
   className?: string;
+  ref?: React.RefObject<HTMLDivElement>;
 }
 
 const Stack: React.FC<StackProps> = (props) => {
-  const { className } = props
+  const { className, ref } = props;
 
-  // console.log(className, "className")
-  return <Container className={className} {...props} />;
+  return <Container className={className} ref={ref} {...props} />;
 };
 
 export default Stack;

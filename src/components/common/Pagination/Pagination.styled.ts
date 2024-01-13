@@ -9,7 +9,7 @@ export const ContainerPagination = styled.div`
   gap: 5px;
 `;
 
-export const ButtonPagination = styled.button`
+export const ButtonPagination = styled.button<any>`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -20,4 +20,8 @@ export const ButtonPagination = styled.button`
   color: ${(props) => (props.page ? "#fff" : "#1F2445")};
   width: 30px;
   height: 30px;
+
+  &:disabled {
+    opacity: 0.6;
+  }
 `;

@@ -1,14 +1,14 @@
 import styled from "styled-components";
+import Stack from "../Stack";
 
-export const Container = styled.div`
-  width: 100%;
-  padding: 2rem 6.625rem 3.75rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-  background-color: #e40f0f;
+export const Container = styled(Stack)`
+  @media (min-width: 576px) {
+    .box-controls-grid {
+      gap: 2.75rem;
+    }
+  }
 
-  span {
-    font-weight: 300;
+  @media (min-width: 768px) {
+    padding: 0.5rem 7.5rem;
   }
 `;

@@ -39,7 +39,9 @@ export const Container = styled.div<IStyleProps>`
     width,
     height,
     maxHeight,
+    minHeight,
     maxWidth,
+    minWidth,
     gap,
     alignItems = "stretch",
     justifyContent = "flex-start",
@@ -65,7 +67,11 @@ export const Container = styled.div<IStyleProps>`
     border-radius: ${calcSpace(borderRadius)};
 
     max-width: ${maxWidth};
+    min-width: ${minWidth};
+
     max-height: ${maxHeight};
+    min-height: ${minHeight};
+
     width: ${width};
     height: ${height};
     align-items: ${alignItems};
