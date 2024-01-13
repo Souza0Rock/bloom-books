@@ -1,38 +1,31 @@
 "use client";
 
-import React, { useCallback, useState } from "react";
-import { Container } from "./Header.styled";
-import Typography from "../Typography";
+import React, { useState } from "react";
+import useCreateQuery from "@/hooks/useCreateQuery";
+import { useRouter } from "next/navigation";
 import Stack from "../Stack";
+import Typography from "../Typography";
 import Star from "../../../../public/icons/star";
 import InputText from "../InputText";
 import Search from "../../../../public/icons/search";
-import { usePathname, useRouter } from "next/navigation";
-import { useSearchParams } from "next/navigation";
 
 const Header: React.FC = () => {
   const { push } = useRouter();
-  const pathname = usePathname();
-  const searchParams = useSearchParams();
+
+  const { createQuery } = useCreateQuery();
 
   const [searchInput, setSearchInput] = useState("");
 
-  const createQueryString = useCallback(
-    (name: string, value: string) => {
-      const params = new URLSearchParams(searchParams.toString());
-      params.set(name, value);
-
-      return params.toString();
-    },
-    [searchParams]
-  );
-
-  const teste = (e: string) => {
-    push(pathname + "?" + createQueryString("search", e));
-  };
-
   return (
-    <Container>
+    <Stack
+      px={0.75}
+      py={1}
+      gap={1}
+      alignItems="center"
+      justifyContent="space-between"
+      flexDirection="column"
+      backgroundColor="#5062f0"
+    >
       <Stack
         width="100%"
         alignItems="center"
@@ -53,19 +46,19 @@ const Header: React.FC = () => {
         width="100%"
         icon={
           <Stack
-            px={0.375}
+            p={0.375}
             ml={-0.75}
             cursorPointer
-            onClick={() => teste(searchInput)}
+            onClick={() => createQuery("search", searchInput)}
           >
             <Search />
           </Stack>
         }
         value={searchInput}
         onChange={(e) => setSearchInput(e.target.value)}
-        handleEnter={(e) => teste(e)}
+        handleEnter={(e) => createQuery("search", e)}
       />
-    </Container>
+    </Stack>
   );
 };
 

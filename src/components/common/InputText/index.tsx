@@ -24,7 +24,6 @@ const InputText: React.FC<{
         value={value}
         onChange={onChange}
         onKeyDown={(e: any) => {
-          // console.log(e, "eee")
           if (e.code === "Enter" && handleEnter) {
             handleEnter(e.target.value);
           }
