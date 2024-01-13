@@ -7,7 +7,7 @@ import Select from "../Select";
 import GridRows from "../../../../public/icons/gridRows";
 import GridBlock from "../../../../public/icons/gridBlock";
 import { useGridOrientation } from "@/contexts/GridOrientation";
-import { useWindowWidht } from "@/contexts/WindowWidht";
+import useWindowWidht from "@/hooks/useWindowWidht";
 
 const SubHeader: React.FC = () => {
   const { gridOrientation, handleGridOrientation } = useGridOrientation();

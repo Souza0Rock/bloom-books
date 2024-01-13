@@ -3,10 +3,10 @@ import { Component } from "./Select.styled";
 import Chevron from "../../../../public/icons/chevron";
 import Typography from "../Typography";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { usePagination } from "@/contexts/Pagination";
 import Stack from "../Stack";
 import styled from "styled-components";
 import useCreateQuery from "@/hooks/useCreateQuery";
+import usePagination from "@/hooks/usePagination";
 
 const Select: React.FC = () => {
   const { get } = useSearchParams()
@@ -14,7 +14,7 @@ const Select: React.FC = () => {
   const param = get("itemsPerPage")
 
   const { createQuery } = useCreateQuery();
-  const { handleChangeItemsPerPage } = usePagination();
+  // const { handleChangeItemsPerPage } = usePagination();
 
   const options = [5, 10, 15]; // Os números que você quer que apareçam no dropdown
 
@@ -32,7 +32,7 @@ const Select: React.FC = () => {
     setSelectedOption(option);
     setIsOpen(false);
     handleSelect(option);
-    handleChangeItemsPerPage(option);
+    // handleChangeItemsPerPage(option);
 
     createQuery("itemsPerPage", String(option));
   };

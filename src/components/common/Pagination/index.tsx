@@ -19,7 +19,7 @@ const Pagination = ({
       justifyContent="center"
       gap={0.3}
       px={1}
-      mt={1.5}
+      // mt={1.5}
     >
       <ButtonPagination
         onClick={() => {
@@ -29,7 +29,7 @@ const Pagination = ({
         {"<"}
       </ButtonPagination>
       <Stack flexDirection="row" flexWrap="wrap" gap={0.3}>
-        {Array.from({ length: 5 }).map((_, index) => {
+        {Array.from({ length: totalPages }).map((_, index) => {
           return (
             <ButtonPagination
               page={currentPage == index}
