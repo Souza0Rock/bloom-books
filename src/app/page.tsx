@@ -18,13 +18,11 @@ export default function Home() {
         setDataBooks(response.data.results);
       })
       .catch(() => {
-        // setIsOpen(true);
       });
   }, []);
 
   return (
     <>
-      {/* {projects.results.map((i) => <p style={{ color: "black" }}>{i.list_name}</p>)} */}
       {dataBooks && <GridGenders dataGenders={dataBooks} />}
     </>
   );

@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import Stack from "../Stack";
 
-export const Container = styled.div<{ isOpen: boolean }>`
+export const Container = styled.div<{ isOpenOptions: boolean }>`
   position: relative;
 
   .select-value {
@@ -10,7 +10,7 @@ export const Container = styled.div<{ isOpen: boolean }>`
   }
 
   svg {
-    rotate: ${({ isOpen }) => (isOpen ? "180deg" : "0deg")};
+    rotate: ${({ isOpenOptions }) => (isOpenOptions ? "180deg" : "0deg")};
   }
 `;
 

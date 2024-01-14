@@ -1,5 +1,5 @@
 import React from "react";
-import { ButtonPagination, ContainerPagination } from "./Pagination.styled";
+import { ButtonPage } from "./Pagination.styled";
 import Stack from "../Stack";
 
 const Pagination = ({
@@ -12,43 +12,32 @@ const Pagination = ({
   handleChangePage: any;
 }) => {
   return (
-    // <Stack flexDirection="row" flexWrap="wrap" justifyContent="center" gap={0.5}>
-    <Stack
-      flexDirection="row"
-      // flexWrap="wrap"
-      justifyContent="center"
-      gap={0.3}
-      px={1}
-      // mt={1.5}
-    >
-      <ButtonPagination
+    <Stack flexDirection="row" justifyContent="center" gap={0.3} px={1}>
+      <ButtonPage
         disabled={currentPage === 0}
         onClick={() => handleChangePage(currentPage - 1)}
       >
         {"<"}
-      </ButtonPagination>
+      </ButtonPage>
       <Stack flexDirection="row" flexWrap="wrap" gap={0.3}>
         {Array.from({ length: totalPages }).map((_, index) => {
           return (
-            <ButtonPagination
+            <ButtonPage
               key={index}
-              value={index}
-              page={currentPage == index}
-              onClick={(e: { target: { value: number } }) =>
-                handleChangePage(e.target.value)
-              }
+              selected={currentPage == index}
+              onClick={() => handleChangePage(index)}
             >
               {index + 1}
-            </ButtonPagination>
+            </ButtonPage>
           );
         })}
       </Stack>
-      <ButtonPagination
+      <ButtonPage
         disabled={currentPage + 1 === totalPages}
         onClick={() => handleChangePage(currentPage + 1)}
       >
         {">"}
-      </ButtonPagination>
+      </ButtonPage>
     </Stack>
   );
 };

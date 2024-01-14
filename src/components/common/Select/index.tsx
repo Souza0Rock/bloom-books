@@ -9,20 +9,20 @@ const Select: React.FC<{
   onChange: (e: any) => void;
   options: any[];
 }> = ({ value, onChange, options }) => {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpenOptions, setIsOpenOptions] = useState(false);
 
-  const toggleOpen = () => setIsOpen(!isOpen);
+  const toggleOpen = () => setIsOpenOptions(!isOpenOptions);
 
   const handleOptionClick = (option: any) => {
     onChange(option);
-    setIsOpen(false);
+    toggleOpen();
   };
 
   const selectRef = useRef<HTMLDivElement>(null);
 
   function handleEscKey(event: KeyboardEvent) {
     if (event.key === "Escape") {
-      setIsOpen(false);
+      toggleOpen();
     }
   }
 
@@ -32,11 +32,11 @@ const Select: React.FC<{
         selectRef.current &&
         !selectRef.current.contains(event.target as Node)
       ) {
-        setIsOpen(false);
+        toggleOpen();
       }
     };
 
-    if (isOpen) {
+    if (isOpenOptions) {
       document.addEventListener("keydown", handleEscKey);
       document.addEventListener("mousedown", handleClickOutside);
     }
@@ -45,10 +45,10 @@ const Select: React.FC<{
       document.removeEventListener("keydown", handleEscKey);
       document.removeEventListener("mousedown", handleClickOutside);
     };
-  }, [isOpen]);
+  }, [isOpenOptions]);
 
   return (
-    <Container isOpen={isOpen}>
+    <Container isOpenOptions={isOpenOptions}>
       <Stack
         onClick={toggleOpen}
         flexDirection="row"
@@ -67,7 +67,7 @@ const Select: React.FC<{
         </Typography>
         <Chevron />
       </Stack>
-      {isOpen && (
+      {isOpenOptions && (
         <Popup ref={selectRef}>
           {options.map((option, index) => (
             <Option

@@ -19,7 +19,6 @@ export const calcSpace = (space: number | string): string | number => {
 
 export const Text = styled.span<TStyles>`
   font-size: ${({ fontSize }) => fontSize}px;
-  // eslint-disable-next-line react/prop-types
   text-transform: ${({ textTransform }) => textTransform};
   font-weight: ${({ fontWeight }) => fontWeight};
   color: ${({ color }) => color};

@@ -1,5 +1,6 @@
 import React from "react";
 import Stack from "../Stack";
+import { InputStyled } from "./InputSelect.styled";
 
 const InputText: React.FC<{
   value: string;
@@ -27,7 +28,7 @@ const InputText: React.FC<{
       className={className}
     >
       {icon}
-      <input
+      <InputStyled
         type="text"
         placeholder="Pesquise aqui..."
         value={value}
@@ -36,14 +37,6 @@ const InputText: React.FC<{
           if (e.code === "Enter" && handleEnter) {
             handleEnter(e.target.value);
           }
-        }}
-        style={{
-          width: "100%",
-          padding: "8px",
-          borderRadius: "1rem",
-          border: "none",
-          outline: "none",
-          backgroundColor: "transparent",
         }}
       />
     </Stack>

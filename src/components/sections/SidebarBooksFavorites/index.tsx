@@ -5,44 +5,9 @@ import Typography from "@/components/common/Typography";
 import Stack from "@/components/common/Stack";
 import Image from "next/image";
 import Star from "../../../../public/icons/star";
+import { Overlay, Sidebar } from "./SidebarBooksFavorites.styled";
 
 const SidebarBooksFavorites: React.FC = () => {
-  const OpacitySidebar = styled.div`
-    margin-top: 2.5rem;
-
-    width: 100vw;
-
-    height: calc(100vh - 2.5rem);
-
-    display: flex;
-    position: fixed;
-    z-index: 99999;
-    background-color: rgba(0, 0, 0, 0.4);
-
-    @media (min-width: 768px) {
-      margin-top: 3.75rem;
-    }
-  `;
-
-  const Sidebar = styled.div`
-    position: absolute;
-    right: 0;
-    width: 400px;
-    height: calc(100vh - 2.5rem);
-    background-color: #fff;
-    border-top: 6px solid #0b1a8e;
-
-    padding: 0.75rem;
-    overflow-x: auto;
-
-    @media (max-width: 600px) {
-      width: 85%;
-    }
-
-    @media (min-width: 768px) {
-      height: calc(100vh - 3.75rem);
-    }
-  `;
   const { openSidebar, handleOpenSidebar, favoriteBooks } = useFavoriteBooks();
 
   const selectRef = useRef<HTMLDivElement>(null);
@@ -76,7 +41,7 @@ const SidebarBooksFavorites: React.FC = () => {
 
   return (
     openSidebar && (
-      <OpacitySidebar>
+      <Overlay>
         <Sidebar ref={selectRef}>
           <Typography fontSize={18} fontWeight={700}>
             Favoritos
@@ -113,7 +78,7 @@ const SidebarBooksFavorites: React.FC = () => {
             )}
           </Stack>
         </Sidebar>
-      </OpacitySidebar>
+      </Overlay>
     )
   );
 };

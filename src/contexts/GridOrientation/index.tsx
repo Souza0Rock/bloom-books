@@ -1,3 +1,4 @@
+import useLocalStorage from "@/hooks/useLocalStorage";
 import React, {
   createContext,
   useContext,
@@ -21,6 +22,7 @@ export const GridOrientationContext =
   createContext<TGridOrientationValue | null>(null);
 
 export function GridOrientationProvider({ children }: IGridOrientation) {
+  const { getStoredValue, setStoredValue } = useLocalStorage()
   const [gridOrientation, setGridOrientation] = useState<TGridOrientation>(
     "rows"
   );

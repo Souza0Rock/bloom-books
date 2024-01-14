@@ -14,7 +14,6 @@ export const ContainerCardRow = styled(Stack)`
     .image-row {
       width: 135px;
       height: 167px;
-      /* margin-left: 0; */
     }
 
     .title {

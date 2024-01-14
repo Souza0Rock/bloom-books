@@ -1,5 +1,3 @@
-"use client";
-
 import React, { ReactNode } from "react";
 import { Container } from "./stack.styled";
 import { IStyleProps } from "@/types/styles";

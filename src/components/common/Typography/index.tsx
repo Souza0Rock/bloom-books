@@ -1,5 +1,3 @@
-"use client";
-
 import React from "react";
 import { Text } from "./Typograph.styled";
 import { TStyles } from "./types";
@@ -19,7 +17,6 @@ type TProps = {
 const Typography: React.FC<TProps & TStyles> = ({
   children,
   fontSize = 14,
-  // eslint-disable-next-line react/prop-types
   textTransform = "none",
   fontWeight = 400,
   color = "#000",
@@ -31,7 +28,6 @@ const Typography: React.FC<TProps & TStyles> = ({
     <Text
       className={inter.className}
       fontSize={fontSize}
-      // eslint-disable-next-line react/prop-types
       textTransform={textTransform}
       fontWeight={fontWeight}
       color={color}

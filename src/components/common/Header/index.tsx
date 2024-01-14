@@ -1,5 +1,3 @@
-"use client";
-
 import React, { useState } from "react";
 import useCreateQuery from "@/hooks/useCreateQuery";
 import { useRouter } from "next/navigation";
@@ -20,9 +18,6 @@ const Header: React.FC = () => {
 
   return (
     <Container
-      // px={0.75}
-      // py={1}
-      // gap={0.5}
       pl={1}
       pb={1}
       alignItems="center"

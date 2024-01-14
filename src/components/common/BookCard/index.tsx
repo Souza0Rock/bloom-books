@@ -30,7 +30,6 @@ const BookCard: React.FC<{ data: TBook }> = ({ data }) => {
             className="title"
             fontWeight={700}
             color="#0E1337"
-            // eslint-disable-next-line react/prop-types
             textTransform="uppercase"
           >
             {data.title}
@@ -103,7 +102,6 @@ const BookCard: React.FC<{ data: TBook }> = ({ data }) => {
           <Typography
             fontWeight={700}
             color="#0E1337"
-            // eslint-disable-next-line react/prop-types
             textTransform="uppercase"
             className="title"
           >
