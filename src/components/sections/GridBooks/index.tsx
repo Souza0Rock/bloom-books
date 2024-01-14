@@ -7,6 +7,7 @@ import { useGridOrientation } from "@/contexts/GridOrientation";
 import usePagination from "@/hooks/usePagination";
 import Pagination from "@/components/common/Pagination";
 import { useGenderStorage } from "@/contexts/GenderStorage";
+import { useFavoriteBooks } from "@/contexts/FavoritesBooks";
 
 const GridBooks: React.FC = () => {
   const { get } = useSearchParams();
@@ -43,8 +44,14 @@ const GridBooks: React.FC = () => {
     data: filteredArray || [],
   });
 
+  const { favoriteBooks } = useFavoriteBooks()
+
+  console.log(favoriteBooks, "favoriteBooks na grid");
+  
+
   return (
     <Stack gap={1.5}>
+      {favoriteBooks && favoriteBooks?.map((i) => <h4>{i.title}</h4>)}
       <Stack
         flexWrap="wrap"
         gap={gridOrientation === "blocks" ? 1.25 : 2.25}

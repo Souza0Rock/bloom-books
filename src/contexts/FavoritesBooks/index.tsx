@@ -21,29 +21,60 @@ export const FavoriteBooksContext = createContext<TFavoriteBooksValue | null>(
 );
 
 export function FavoriteBooksProvider({ children }: IFavoritesBooks) {
-  const { setStoredValue } = useLocalStorage();
+  const { setStoredValue, getStoredValue } = useLocalStorage();
   const [favoriteBooks, setFavoriteBooks] = useState<any[]>([]);
 
+  // const handleFavoriteBook = (book: any) => {
+  //   const isBookInFavorites = favoriteBooks.some((item) => item.title === book.title);
+
+  //   if (isBookInFavorites) {
+  //     // O livro já está nos favoritos, então remova-o
+  //     const updatedItems = favoriteBooks.filter((i) => i.title !== book.title);
+  //     setFavoriteBooks(updatedItems);
+  //   } else {
+  //     // O livro não está nos favoritos, então adicione-o
+  //     setFavoriteBooks([...favoriteBooks, book]);
+  //   }
+
+  //   // Atualize o localStorage
+  //   setStoredValue("favoriteBooks", JSON.stringify(favoriteBooks));
+  // };
+
   const handleFavoriteBook = (book: any) => {
-    const isBookInFavorites = favoriteBooks.some((item) => item.title === book.title);
-  
+    // console.log(favoriteBooks, "favoriteBooks toogle array")
+    // console.log(book, "book toogle array")
+    // console.log(favoriteBooks.includes(book.title), "includes")
+    // console.log(favoriteBooks.some((item) => item.title === book.title), "some")
+
+    // console.log(favoriteBooks.filter((i) => i.title !== book.title), "remover")
+    const isBookInFavorites = favoriteBooks.some(
+      (item) => item.title === book.title
+    );
+
     if (isBookInFavorites) {
-      // O livro já está nos favoritos, então remova-o
       const updatedItems = favoriteBooks.filter((i) => i.title !== book.title);
       setFavoriteBooks(updatedItems);
+
+      setStoredValue("favorite_books", updatedItems);
     } else {
-      // O livro não está nos favoritos, então adicione-o
       setFavoriteBooks([...favoriteBooks, book]);
+
+      setStoredValue("favorite_books", [...favoriteBooks, book]);
     }
-  
-    // Atualize o localStorage
-    setStoredValue("favoriteBooks", JSON.stringify(favoriteBooks));
   };
 
-  console.log(favoriteBooks, "favoriteBooks")
+  useEffect(() => {
+    const teste = getStoredValue("favorite_books")
+
+    setFavoriteBooks(teste)
+    // console.log(teste, "teste")
+  }, [])
+
+  // console.log(favoriteBooks, "favorite_books")
   // useEffect(() => {
-  //   setStoredValue("favoriteBooks", JSON.stringify(favoriteBooks));
-  // }, [favoriteBooks]);
+  //   setStoredValue("favorite_books", favoriteBooks);
+  // }, [favoriteBooks.length > 0]);
+
 
 
   return (
