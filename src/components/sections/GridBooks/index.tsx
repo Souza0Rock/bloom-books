@@ -7,6 +7,7 @@ import { useGridOrientation } from "@/contexts/GridOrientation";
 import usePagination from "@/hooks/usePagination";
 import Pagination from "@/components/common/Pagination";
 import { useGenderStorage } from "@/contexts/GenderStorage";
+import Typography from "@/components/common/Typography";
 
 const GridBooks: React.FC = () => {
   const { get } = useSearchParams();
@@ -51,16 +52,22 @@ const GridBooks: React.FC = () => {
         justifyContent={gridOrientation === "blocks" ? "center" : "flex-start"}
         flexDirection={gridOrientation === "blocks" ? "row" : "column"}
       >
-        {data &&
-          data.map((book: TBook, index) => (
-            <BookCard key={index} data={book} />
-          ))}
+        {data.length > 0 ? (
+          data.map((book: TBook, index) => <BookCard key={index} data={book} />)
+        ) : (
+          <Typography fontSize={24}>
+            Desculpe, sem livros disponíveis no momento!
+          </Typography>
+        )}
       </Stack>
-      <Pagination
-        handleChangePage={handleChangeCurrentPage}
-        currentPage={meta.currentPage}
-        totalPages={meta.totalPages}
-      />
+
+      {meta.totalPages > 1 && (
+        <Pagination
+          handleChangePage={handleChangeCurrentPage}
+          currentPage={meta.currentPage}
+          totalPages={meta.totalPages}
+        />
+      )}
     </Stack>
   );
 };

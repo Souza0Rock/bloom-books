@@ -1,14 +1,33 @@
-import React from "react";
+"use client";
+
+import React, { useCallback, useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import usePagination from "@/hooks/usePagination";
 import Stack from "@/components/common/Stack";
 import GenderCard from "@/components/common/GenderCard";
 import { useGridOrientation } from "@/contexts/GridOrientation";
 import Pagination from "@/components/common/Pagination";
+import Typography from "@/components/common/Typography";
 import { TGender } from "@/types/bookGenders";
 import { Container } from "./GridGenders.styled";
+import { getBooksGenders } from "@/services/fetch/getBooksGenders";
 
-const GridGenders: React.FC<{ dataGenders: TGender[] }> = ({ dataGenders }) => {
+const GridGenders: React.FC = () => {
+  const [dataGenders, setDataGenders] = useState<TGender[] | []>([]);
+
+  const fetchGenders = useCallback(async () => {
+    try {
+      const { results } = await getBooksGenders();
+      setDataGenders(results);
+    } catch (error) {
+      throw error;
+    }
+  }, []);
+
+  useEffect(() => {
+    fetchGenders();
+  }, []);
+
   const { get } = useSearchParams();
   const { gridOrientation } = useGridOrientation();
 
@@ -31,17 +50,24 @@ const GridGenders: React.FC<{ dataGenders: TGender[] }> = ({ dataGenders }) => {
         mb={gridOrientation === "rows" ? 1.5 : 2.625}
         className="box-grid"
       >
-        {data &&
+        {data.length > 0 ? (
           data?.map((i, index) => {
             return <GenderCard data={i} key={index} />;
-          })}
+          })
+        ) : (
+          <Typography fontSize={24}>
+            Desculpe, sem gêneros disponíveis no momento!
+          </Typography>
+        )}
       </Stack>
 
-      <Pagination
-        handleChangePage={handleChangeCurrentPage}
-        currentPage={meta.currentPage}
-        totalPages={meta.totalPages}
-      />
+      {meta.totalPages > 1 && (
+        <Pagination
+          handleChangePage={handleChangeCurrentPage}
+          currentPage={meta.currentPage}
+          totalPages={meta.totalPages}
+        />
+      )}
     </Container>
   );
 };
