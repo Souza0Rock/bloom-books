@@ -9,7 +9,10 @@ import React, {
 
 type TFavoriteBooksValue = {
   favoriteBooks: any[];
-  handleFavoriteBook: (name: any) => void;
+  handleFavoriteBook: (book: Partial<TBook>) => void;
+  bookIsFavorited: (book: Partial<TBook>) => void;
+  openSidebar: boolean;
+  handleOpenSidebar: () => void;
 };
 
 interface IFavoritesBooks {
@@ -21,37 +24,17 @@ export const FavoriteBooksContext = createContext<TFavoriteBooksValue | null>(
 );
 
 export function FavoriteBooksProvider({ children }: IFavoritesBooks) {
+  const [openSidebar, setOpenSidebar] = useState<boolean>(false);
+  const handleOpenSidebar = () => setOpenSidebar(!openSidebar);
+
   const { setStoredValue, getStoredValue } = useLocalStorage();
   const [favoriteBooks, setFavoriteBooks] = useState<any[]>([]);
 
-  // const handleFavoriteBook = (book: any) => {
-  //   const isBookInFavorites = favoriteBooks.some((item) => item.title === book.title);
+  const bookIsFavorited = (book: Partial<TBook>): boolean =>
+    favoriteBooks.some((item) => item.title === book.title);
 
-  //   if (isBookInFavorites) {
-  //     // O livro já está nos favoritos, então remova-o
-  //     const updatedItems = favoriteBooks.filter((i) => i.title !== book.title);
-  //     setFavoriteBooks(updatedItems);
-  //   } else {
-  //     // O livro não está nos favoritos, então adicione-o
-  //     setFavoriteBooks([...favoriteBooks, book]);
-  //   }
-
-  //   // Atualize o localStorage
-  //   setStoredValue("favoriteBooks", JSON.stringify(favoriteBooks));
-  // };
-
-  const handleFavoriteBook = (book: any) => {
-    // console.log(favoriteBooks, "favoriteBooks toogle array")
-    // console.log(book, "book toogle array")
-    // console.log(favoriteBooks.includes(book.title), "includes")
-    // console.log(favoriteBooks.some((item) => item.title === book.title), "some")
-
-    // console.log(favoriteBooks.filter((i) => i.title !== book.title), "remover")
-    const isBookInFavorites = favoriteBooks.some(
-      (item) => item.title === book.title
-    );
-
-    if (isBookInFavorites) {
+  const handleFavoriteBook = (book: Partial<TBook>) => {
+    if (bookIsFavorited(book)) {
       const updatedItems = favoriteBooks.filter((i) => i.title !== book.title);
       setFavoriteBooks(updatedItems);
 
@@ -64,24 +47,18 @@ export function FavoriteBooksProvider({ children }: IFavoritesBooks) {
   };
 
   useEffect(() => {
-    const teste = getStoredValue("favorite_books")
-
-    setFavoriteBooks(teste)
-    // console.log(teste, "teste")
-  }, [])
-
-  // console.log(favoriteBooks, "favorite_books")
-  // useEffect(() => {
-  //   setStoredValue("favorite_books", favoriteBooks);
-  // }, [favoriteBooks.length > 0]);
-
-
+    const storageFavorites = getStoredValue("favorite_books");
+    setFavoriteBooks(storageFavorites);
+  }, []);
 
   return (
     <FavoriteBooksContext.Provider
       value={{
         favoriteBooks,
         handleFavoriteBook,
+        bookIsFavorited,
+        openSidebar,
+        handleOpenSidebar,
       }}
     >
       {children}

@@ -14,35 +14,42 @@ import useCreateQuery from "@/hooks/useCreateQuery";
 
 const SubHeader: React.FC = () => {
   const pathname = usePathname();
+  const { get } = useSearchParams();
+
+  const { createQuery } = useCreateQuery();
   const { genderName } = useGenderStorage();
   const { gridOrientation, handleGridOrientation } = useGridOrientation();
 
   const options = [5, 10, 15];
 
-  const { get } = useSearchParams();
-
   const itemsPerPageParam = get("itemsPerPage") || 5;
-
-  const { createQuery } = useCreateQuery();
 
   return (
     <Container
       px={1}
       py={0.5}
+      gap={0.5}
       alignItems="center"
       flexDirection="row"
       backgroundColor="#F2F3F8"
       justifyContent="space-between"
     >
-      <Typography fontSize={18} fontWeight={700} color="#010311">
+      <Typography
+        className="title"
+        fontSize={18}
+        fontWeight={700}
+        color="#010311"
+      >
         {pathname === "/" ? "Gêneros" : genderName}
       </Typography>
 
       <Stack
-        flexDirection="row"
-        alignItems="center"
-        className="box-controls-grid"
         gap={0.5}
+        minWidth="48%"
+        alignItems="center"
+        flexDirection="row"
+        justifyContent="flex-end"
+        className="box-controls-grid"
       >
         <Stack flexDirection="row" gap={0.25}>
           <Typography fontSize={12} lineHeigth={1}>

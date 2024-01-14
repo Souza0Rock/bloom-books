@@ -46,12 +46,12 @@ const GridBooks: React.FC = () => {
 
   const { favoriteBooks } = useFavoriteBooks()
 
-  console.log(favoriteBooks, "favoriteBooks na grid");
+  // console.log(favoriteBooks, "favoriteBooks na grid");
   
 
   return (
     <Stack gap={1.5}>
-      {favoriteBooks && favoriteBooks?.map((i) => <h4>{i.title}</h4>)}
+      {/* {favoriteBooks && favoriteBooks?.map((i) => <h4>{i.title}</h4>)} */}
       <Stack
         flexWrap="wrap"
         gap={gridOrientation === "blocks" ? 1.25 : 2.25}

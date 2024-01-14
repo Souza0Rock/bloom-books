@@ -13,7 +13,12 @@ export const Container = styled.button<IStyleProps>`
     background-color: ${backgroundColor};
   `}
 
-  cursor: pointer;
   border: none;
   border-radius: 1.5rem;
+
+  cursor: pointer;
+
+  * {
+    cursor: pointer;
+  }
 `;

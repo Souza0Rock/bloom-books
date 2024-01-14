@@ -1,6 +1,6 @@
 export interface TStyles {
   fontSize?: number;
-  textAlign?: "center" | "end" | "justify" | "left" | "right" | "start";
+  // eslint-disable-next-line react/prop-types
   textTransform?: "capitalize" | "lowercase" | "uppercase" | "none";
   fontWeight?: 300 | 400 | 500 | 600 | 700;
   color?: string;

@@ -1,0 +1,11 @@
+{
+  "overrides": [
+    {
+      "files": ["*.jsx", "*.js"],
+      "rules": {
+        "react/prop-types": "off",
+        "jsx-a11y/no-style-tag": "off"
+      }
+    }
+  ]
+}

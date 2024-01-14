@@ -8,6 +8,7 @@ import { Container } from "./BaseLayout.styled";
 import SubHeader from "../SubHeader";
 import Header from "../Header";
 import Stack from "../Stack";
+import SidebarBooksFavorites from "@/components/sections/SidebarBooksFavorites";
 
 export type TProps = {
   children: React.ReactNode;
@@ -20,6 +21,7 @@ const BaseLayout: React.FC<TProps> = ({ children }) => (
         <Container>
           <Header />
           <SubHeader />
+          <SidebarBooksFavorites />
           <Stack m={1} minHeight="100vh" className="children-content">
             {children}
           </Stack>
