@@ -17,6 +17,13 @@ export const Overlay = styled.div`
   }
 `;
 
+export const OverlaySecundary = styled.div`
+  width: 100%;
+  height: 3.75rem;
+  position: fixed;
+  top: 0;
+`;
+
 export const Sidebar = styled.div`
   position: absolute;
   right: 0;
@@ -33,4 +40,3 @@ export const Sidebar = styled.div`
     height: calc(100vh - 3.75rem);
   }
 `;
- 

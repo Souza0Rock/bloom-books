@@ -5,10 +5,15 @@ import Typography from "@/components/common/Typography";
 import Stack from "@/components/common/Stack";
 import Image from "next/image";
 import Star from "../../../../public/icons/star";
-import { Overlay, Sidebar } from "./SidebarBooksFavorites.styled";
+import {
+  Overlay,
+  OverlaySecundary,
+  Sidebar,
+} from "./SidebarBooksFavorites.styled";
 
 const SidebarBooksFavorites: React.FC = () => {
-  const { openSidebar, handleOpenSidebar, favoriteBooks } = useFavoriteBooks();
+  const { openSidebar, handleOpenSidebar, favoriteBooks, handleFavoriteBook } =
+    useFavoriteBooks();
 
   const selectRef = useRef<HTMLDivElement>(null);
 
@@ -42,6 +47,7 @@ const SidebarBooksFavorites: React.FC = () => {
   return (
     openSidebar && (
       <Overlay>
+        <OverlaySecundary />
         <Sidebar ref={selectRef}>
           <Typography fontSize={18} fontWeight={700}>
             Favoritos
@@ -66,7 +72,7 @@ const SidebarBooksFavorites: React.FC = () => {
                       <Typography color="#454A67" fontSize={12}>
                         by {book.author}
                       </Typography>
-                      <Stack px={0.25}>
+                      <Stack px={0.25} onClick={() => handleFavoriteBook(book)}>
                         <Star color="#5062F0" size={11} />
                       </Stack>
                     </Stack>

@@ -25,13 +25,19 @@ export const FavoriteBooksContext = createContext<TFavoriteBooksValue | null>(
 
 export function FavoriteBooksProvider({ children }: IFavoritesBooks) {
   const [openSidebar, setOpenSidebar] = useState<boolean>(false);
-  const handleOpenSidebar = () => setOpenSidebar(!openSidebar);
+  const handleOpenSidebar = () => {
+// console.log("oi");
+
+    setOpenSidebar(!openSidebar)
+  };
 
   const { setStoredValue, getStoredValue } = useLocalStorage();
   const [favoriteBooks, setFavoriteBooks] = useState<any[]>([]);
 
   const bookIsFavorited = (book: Partial<TBook>): boolean =>
-    favoriteBooks.some((item) => item.title === book.title);
+    favoriteBooks.length > 0
+      ? favoriteBooks.some((item) => item.title === book.title)
+      : false;
 
   const handleFavoriteBook = (book: Partial<TBook>) => {
     if (bookIsFavorited(book)) {
