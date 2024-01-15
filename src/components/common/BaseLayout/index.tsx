@@ -35,7 +35,7 @@ const BaseLayout: React.FC<TProps> = ({ children }) => (
             pauseOnHover
             theme="light"
           />
-          <Stack m={1} minHeight="100vh" className="children-content">
+          <Stack m={1} className="children-content">
             {children}
           </Stack>
         </Container>

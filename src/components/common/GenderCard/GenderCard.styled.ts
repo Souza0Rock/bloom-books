@@ -13,7 +13,7 @@ export const ContainerRowMode = styled(Stack)`
       align-items: center;
     }
 
-    .updates {
+    .box-updates {
       gap: 5.875rem;
       flex-direction: row;
     }
