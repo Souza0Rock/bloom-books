@@ -1,4 +1,4 @@
-import { IGendersBooks } from "@/types/bookGenders";
+import { IGendersBooks } from "@/types/gendersBooks";
 import { nyTimesInstance } from "../connectApi";
 
 export const getBooksGenders = async (): Promise<IGendersBooks> => {

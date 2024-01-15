@@ -8,7 +8,7 @@ import GenderCard from "@/components/common/GenderCard";
 import { useGridOrientation } from "@/contexts/GridOrientation";
 import Pagination from "@/components/common/Pagination";
 import Typography from "@/components/common/Typography";
-import { TGender } from "@/types/bookGenders";
+import { TGender } from "@/types/gendersBooks";
 import { Container } from "./GridGenders.styled";
 import { getBooksGenders } from "@/services/fetch/getBooksGenders";
 import { toast } from "react-toastify";

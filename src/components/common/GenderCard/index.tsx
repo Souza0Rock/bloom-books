@@ -7,7 +7,7 @@ import TextLink from "../TextLink";
 import { ContainerRowMode } from "./GenderCard.styled";
 import { useGridOrientation } from "@/contexts/GridOrientation";
 import { formatDate } from "@/utils/formatDate";
-import { TGender } from "@/types/bookGenders";
+import { TGender } from "@/types/gendersBooks";
 
 const GenderCard: React.FC<{ data: TGender }> = ({ data }) => {
   const { gridOrientation } = useGridOrientation();
