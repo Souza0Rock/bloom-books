@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import useCreateQuery from "@/hooks/useCreateQuery";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import Stack from "../Stack";
 import Typography from "../Typography";
 import Star from "../../../../public/icons/star";
@@ -14,7 +14,13 @@ const Header: React.FC = () => {
   const { createQuery } = useCreateQuery();
   const { openSidebar, handleOpenSidebar } = useFavoriteBooks();
 
+  const pathname = usePathname();
+
   const [searchInput, setSearchInput] = useState("");
+
+  useEffect(() => {
+    setSearchInput("");
+  }, [pathname]);
 
   return (
     <Container
@@ -51,6 +57,8 @@ const Header: React.FC = () => {
               ml={-0.75}
               cursorPointer
               onClick={() => createQuery("search", searchInput)}
+              className="icon-input"
+              borderRadius={14}
             >
               <Search />
             </Stack>

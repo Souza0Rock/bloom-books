@@ -8,6 +8,7 @@ import usePagination from "@/hooks/usePagination";
 import Pagination from "@/components/common/Pagination";
 import { useGenderStorage } from "@/contexts/GenderStorage";
 import Typography from "@/components/common/Typography";
+import { toast } from "react-toastify";
 
 const GridBooks: React.FC = () => {
   const { get } = useSearchParams();
@@ -24,7 +25,9 @@ const GridBooks: React.FC = () => {
       setBooks(data.books);
       handleChangeGenderName(data.display_name);
     } catch (error) {
-      throw error;
+      toast("Erro de conexão, tente novamente", {
+        type: "error",
+      });
     }
   }, []);
 

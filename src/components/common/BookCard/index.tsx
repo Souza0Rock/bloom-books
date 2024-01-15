@@ -17,14 +17,14 @@ const BookCard: React.FC<{ data: TBook }> = ({ data }) => {
   return gridOrientation === "rows" ? (
     <ContainerCardRow flexDirection="row" gap={0.625}>
       <Image
-        width={75}
-        height={107}
+        width={121}
+        height={153}
         alt={data.title}
         src={data.book_image}
         className="image-row"
       />
 
-      <Stack gap={0.75} maxWidth="66%">
+      <Stack gap={0.75} className="content-box">
         <Stack>
           <Typography
             className="title"
@@ -71,7 +71,7 @@ const BookCard: React.FC<{ data: TBook }> = ({ data }) => {
             {data.description}
           </Typography>
           <Typography className="content-text publisher" fontSize={12}>
-            {data.publisher}
+            Editora Bloom
           </Typography>
           <Typography className="content-text" fontSize={12}>
             #{data.rank}
@@ -139,7 +139,7 @@ const BookCard: React.FC<{ data: TBook }> = ({ data }) => {
             {data.description}
           </Typography>
           <Typography className="content-text publisher" fontSize={12}>
-            {data.publisher}
+            Editora Bloom
           </Typography>
           <Typography className="content-text" fontSize={12}>
             #{data.rank}

@@ -7,7 +7,7 @@ import Image from "next/image";
 import Star from "../../../../public/icons/star";
 import {
   Overlay,
-  OverlaySecundary,
+  OverlaySecondary,
   Sidebar,
 } from "./SidebarBooksFavorites.styled";
 
@@ -47,7 +47,7 @@ const SidebarBooksFavorites: React.FC = () => {
   return (
     openSidebar && (
       <Overlay>
-        <OverlaySecundary />
+        <OverlaySecondary />
         <Sidebar ref={selectRef}>
           <Typography fontSize={18} fontWeight={700}>
             Favoritos
@@ -72,7 +72,11 @@ const SidebarBooksFavorites: React.FC = () => {
                       <Typography color="#454A67" fontSize={12}>
                         by {book.author}
                       </Typography>
-                      <Stack px={0.25} onClick={() => handleFavoriteBook(book)}>
+                      <Stack
+                        px={0.25}
+                        cursorPointer
+                        onClick={() => handleFavoriteBook(book)}
+                      >
                         <Star color="#5062F0" size={11} />
                       </Stack>
                     </Stack>

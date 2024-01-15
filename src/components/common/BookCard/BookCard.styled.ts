@@ -6,6 +6,10 @@ export const ContainerCardRow = styled(Stack)`
     margin: 0 1rem;
   }
 
+  .content-box {
+    max-width: 48%;
+  }
+
   .publisher {
     margin: 0.75rem 0 0.625rem;
   }
@@ -14,6 +18,10 @@ export const ContainerCardRow = styled(Stack)`
     .image-row {
       width: 135px;
       height: 167px;
+    }
+
+    .content-box {
+      max-width: 66%;
     }
 
     .title {

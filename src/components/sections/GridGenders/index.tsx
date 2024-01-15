@@ -11,6 +11,7 @@ import Typography from "@/components/common/Typography";
 import { TGender } from "@/types/bookGenders";
 import { Container } from "./GridGenders.styled";
 import { getBooksGenders } from "@/services/fetch/getBooksGenders";
+import { toast } from "react-toastify";
 
 const GridGenders: React.FC = () => {
   const [dataGenders, setDataGenders] = useState<TGender[] | []>([]);
@@ -20,7 +21,9 @@ const GridGenders: React.FC = () => {
       const { results } = await getBooksGenders();
       setDataGenders(results);
     } catch (error) {
-      throw error;
+      toast("Erro de conexão, tente novamente", {
+        type: "error",
+      });
     }
   }, []);
 
